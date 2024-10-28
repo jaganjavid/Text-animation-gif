@@ -1,0 +1,230 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 13px;
+	--color-bg: #000;
+	--page-padding: 3rem 1rem;
+}
+
+body {
+	margin: 0;
+	background-color: var(--color-bg);
+	font-family: "Reddit Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 550;
+	font-style: normal;
+	letter-spacing: 0.02em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Rail */
+
+.rail {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.rail_container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.rail_sizing {
+	position: relative;
+	opacity: 0;
+	height: auto;
+	width: 420vw;
+
+	@media screen and (min-width: 53em) {
+		width: 232vw;
+	}
+}
+
+.rail_clip {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	-webkit-clip-path: url("#contentTitle");
+	clip-path: url("#contentTitle");
+	animation: clip-anim 20s linear infinite;
+}
+
+.rail_color {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #0c0c0e;
+	animation: color-anim 20s linear infinite;
+}
+
+.rail_heading {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.rail_gradients {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backface-visibility: hidden;
+	width: 100vw;
+	height: 100%;
+	transform: scale(1.75);
+
+	@media screen and (min-width: 53em) {
+		transform: scale(1);
+	}
+}
+
+.rail_gradient {
+	position: absolute;
+	width: 52vw;
+	height: 52vw;
+	min-width: 52vw;
+	min-height: 52vw;
+}
+
+.rail_gradient.-core {
+	transform: translate(-7vw, calc(-2.3vw + 100vh));
+	animation: intro-core 3s cubic-bezier(.04,1.15,0.4,.99) 0.5s forwards;
+}
+
+.rail_gradient.-pro {
+	transform: translate(7vw, calc(5vw + 100vh));
+	animation: intro-pro 2.75s cubic-bezier(.04,1.15,0.4,.99) 0.75s forwards;
+}
+
+@keyframes clip-anim {
+	from {
+		transform: translateX(0%);
+   }
+	to {
+		transform: translateX(-50%);
+   }
+}
+
+@keyframes color-anim {
+	from {
+		transform: translateX(0%);
+   }
+	to {
+		transform: translateX(50%);
+   }
+}
+
+/* Boxes */
+
+.boxes {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	transform: scale(1.75);
+
+	@media screen and (min-width: 53em) {
+		transform: scale(1);
+	}
+}
+
+.box {
+	position: absolute;
+}
+
+.box_container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.box_gradient {
+	position: absolute;
+	width: 180%;
+	height: 180%;
+	opacity: 0.4;
+}
+
+.box_image {
+	position: relative;
+	height: auto;
+	left: 105px;
+	top: 20px;
+	border-radius: 20px;
+}
+
+.box.-core {
+	transform: translate(-7vw, calc(-2.3vw + 100vh));
+	animation: intro-core 3s cubic-bezier(.04,1.15,0.4,.99) 2s forwards;
+}
+
+.box.-core .box_container {
+	animation: float-core 4s ease-in-out 0s alternate;
+	animation-iteration-count: infinite;
+}
+
+.box.-core .box_image {
+	width: 26vw;
+}
+
+.box.-core .box_gradient {
+	transform: translateX(-2vw);
+}
+
+
+@keyframes float-core {
+	from {
+		transform: translateY(0%);
+   }
+	to {
+		transform: translateY(5%);
+   }
+}
+@keyframes float-pro {
+	from {
+		transform: translateY(4%);
+   }
+	to {
+		transform: translateY(0%);
+   }
+}
+
+@keyframes intro-core {
+	from {
+		transform: translate(-7vw, calc(-2.3vw + 100vh));
+   }
+	to {
+		transform: translate(-7vw, -2.3vw);
+   }
+}
+@keyframes intro-pro {
+	from {
+		transform: translate(7vw, calc(5vw + 100vh));
+   }
+	to {
+		transform: translate(7vw, 5vw);
+   }
+}
